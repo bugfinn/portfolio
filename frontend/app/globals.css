@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+/* ── Dark mode: triggered by .dark class on <html> ── */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ── Register Inter as the default sans font ── */
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ── Light Mode Tokens ── */
+:root {
+  --bg:          #ffffff;
+  --bg-subtle:   #F8FAFC;
+  --bg-card:     #F1F5F9;
+  --border:      #E2E8F0;
+
+  --text-1:      #0F172A;
+  --text-2:      #475569;
+  --text-3:      #94A3B8;
+
+  --accent:      #2563EB;
+  --accent-h:    #1D4ED8;
+  --accent-lt:   #EFF6FF;
+}
+
+/* ── Dark Mode Tokens ── */
+.dark {
+  --bg:          #0F172A;
+  --bg-subtle:   #1E293B;
+  --bg-card:     #283548;
+  --border:      #334155;
+
+  --text-1:      #F8FAFC;
+  --text-2:      #CBD5E1;
+  --text-3:      #64748B;
+
+  --accent:      #3B82F6;
+  --accent-h:    #60A5FA;
+  --accent-lt:   #172554;
+}
+
+/* ── Base Styles ── */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-1);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+* {
+  box-sizing: border-box;
+  border-color: var(--border);
+}
