@@ -56,3 +56,8 @@ body {
   box-sizing: border-box;
   border-color: var(--border);
 }
+
+@keyframes drain {
+  from { width: 100%; }
+  to   { width: 0%; }
+}

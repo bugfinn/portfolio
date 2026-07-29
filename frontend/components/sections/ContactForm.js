@@ -18,6 +18,10 @@ export default function ContactForm() {
     const result = await postContact(form.name, form.email, form.message)
     if (result.success) {
       setStatus('sent')
+      setForm({ name: '', email: '', message: '' })
+setTimeout(() => {
+  setStatus('idle')
+}, 5000)
       if (status === 'error') {
   return (
     <section
@@ -80,31 +84,60 @@ export default function ContactForm() {
   }
 
   if (status === 'sent') {
-    return (
-      <section
-        id="contact"
-        style={{ padding: '64px 24px', maxWidth: '896px', margin: '0 auto', borderTop: '1px solid var(--border)' }}
+  return (
+    <section
+      id="contact"
+      style={{ padding: '64px 24px', maxWidth: '896px', margin: '0 auto', borderTop: '1px solid var(--border)' }}
+    >
+      <div
+        style={{
+          padding:         '48px 24px',
+          backgroundColor: 'var(--bg-card)',
+          border:          '1px solid var(--border)',
+          borderRadius:    '12px',
+          position:        'relative',
+          overflow:        'hidden',
+          textAlign:       'center',
+        }}
       >
-        <div
+        <p style={{ fontSize: '32px', marginBottom: '12px' }}>✅</p>
+        <h3 style={{ fontSize: '18px', fontWeight: '700', color: 'var(--text-1)', marginBottom: '8px' }}>
+          Message sent!
+        </h3>
+        <p style={{ fontSize: '14px', color: 'var(--text-2)', marginBottom: '20px' }}>
+          Thanks for reaching out — I will get back to you soon.
+        </p>
+        <button
+          onClick={() => setStatus('idle')}
           style={{
-            textAlign:       'center',
-            padding:         '48px 24px',
-            backgroundColor: 'var(--bg-card)',
-            border:          '1px solid var(--border)',
-            borderRadius:    '12px',
+            color:      'var(--accent)',
+            cursor:     'pointer',
+            background: 'none',
+            border:     'none',
+            fontSize:   '13px',
+            fontWeight: '600',
+            padding:    0,
           }}
         >
-          <p style={{ fontSize: '32px', marginBottom: '12px' }}>✅</p>
-          <h3 style={{ fontSize: '18px', fontWeight: '700', color: 'var(--text-1)', marginBottom: '8px' }}>
-            Message sent!
-          </h3>
-          <p style={{ fontSize: '14px', color: 'var(--text-2)' }}>
-            Thanks for reaching out — I&apos;ll get back to you soon.
-          </p>
-        </div>
-      </section>
-    )
-  }
+          Send another message
+        </button>
+
+        {/* Progress bar */}
+        <div
+          style={{
+            position:        'absolute',
+            bottom:          0,
+            left:            0,
+            height:          '3px',
+            backgroundColor: 'var(--accent)',
+            animation:       'drain 5s linear forwards',
+            width:           '100%',
+          }}
+        />
+      </div>
+    </section>
+  )
+}
 
   return (
     <section
