@@ -11,12 +11,52 @@ export default function ContactForm() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setStatus('sending')
-    // TODO Step 7: replace with real Lambda URL call
-    await new Promise((r) => setTimeout(r, 1000))
-    setStatus('sent')
+  e.preventDefault()
+  setStatus('sending')
+  try {
+    const { postContact } = await import('@/lib/api')
+    const result = await postContact(form.name, form.email, form.message)
+    if (result.success) {
+      setStatus('sent')
+      if (status === 'error') {
+  return (
+    <section
+      id="contact"
+      style={{ padding: '64px 24px', maxWidth: '896px', margin: '0 auto', borderTop: '1px solid var(--border)' }}
+    >
+      <div
+        style={{
+          textAlign:       'center',
+          padding:         '48px 24px',
+          backgroundColor: 'var(--bg-card)',
+          border:          '1px solid var(--border)',
+          borderRadius:    '12px',
+        }}
+      >
+        <p style={{ fontSize: '32px', marginBottom: '12px' }}>❌</p>
+        <h3 style={{ fontSize: '18px', fontWeight: '700', color: 'var(--text-1)', marginBottom: '8px' }}>
+          Something went wrong
+        </h3>
+        <p style={{ fontSize: '14px', color: 'var(--text-2)', marginBottom: '16px' }}>
+          Please try again or email me directly.
+        </p>
+        <button
+          onClick={() => setStatus('idle')}
+          style={{ color: 'var(--accent)', cursor: 'pointer', background: 'none', border: 'none', fontSize: '14px', fontWeight: '600' }}
+        >
+          Try again
+        </button>
+      </div>
+    </section>
+  )
+}
+    } else {
+      setStatus('error')
+    }
+  } catch {
+    setStatus('error')
   }
+}
 
   const inputStyle = {
     width:           '100%',
