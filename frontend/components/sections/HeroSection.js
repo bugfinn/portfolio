@@ -2,9 +2,10 @@ import Image from 'next/image'
 import Button from '@/components/ui/Button'
 
 const socialLinks = [
-  { label: 'GitHub',   href: 'https://github.com/YOUR_USERNAME',     external: true  },
-  { label: 'LinkedIn', href: 'https://linkedin.com/in/YOUR_USERNAME', external: true  },
-  { label: 'Email',    href: 'mailto:your@email.com',                 external: false },
+  { label: 'GitHub',   href: 'https://github.com/bugfinn',     external: true  },
+  { label: 'LinkedIn', href: 'https://linkedin.com//Affan Naveed', external: true  },
+  { label: 'X', href: 'https://x.com//AffanNaveed004', external: true  },
+  { label: 'Email',    href: 'mailto:your@email.com',external: false },
 ]
 
 export default function HeroSection() {

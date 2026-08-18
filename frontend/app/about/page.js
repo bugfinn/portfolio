@@ -89,11 +89,10 @@ export default function AboutPage() {
       {/* CTAs */}
       <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '64px' }}>
         <Button
-          href="/Affan_Resume.pdf"
+          href="/Affan_Naveed_Resume.pdf"
           variant="primary"
           size="lg"
-          target="_blank"
-          rel="noopener noreferrer"
+          download="Affan_Naveed_Resume.pdf"
         >
           Download Resume
         </Button>
