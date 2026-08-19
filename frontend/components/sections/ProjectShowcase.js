@@ -16,19 +16,19 @@ const projects = [
     live:        '#',
   },
   {
-    title:       'T0-Do List (First-Project)',
-    description: 'A modular, responsive to-do list web app with dark mode, task filtering, and local storage. Built with vanilla JavaScript and modular CSS.',
-    tags:        ['HTML5', 'JavaScript (ES6 modules) ', 'Local Storage API'],
+    title:       'Task Management Web Application',
+    description: 'A modular, responsive task management web application featuring dark mode, task filtering, and persistent local storage. Engineered with vanilla JavaScript (ES6) and modular CSS to ensure high performance and clean architecture.',
+    tags:        ['HTML5', 'JavaScript (ES6 modules) ', 'Local Storage API' , 'CSS3'],
     github:      'https://github.com/bugfinn/TO-DO-LIST',
     live:        'https://bugfinn.github.io/TO-DO-LIST',
     
   },
   {
-    title:       '',
-    description: 'A modular, responsive to-do list web app with dark mode, task filtering, and local storage. Built with vanilla JavaScript and modular CSS.',
-    tags:        ['HTML5', 'JavaScript(ES6 modules)', 'Local Storage API'],
-    github:      'https://github.com/bugfinn/TO-DO-LIST',
-    live:        'https://bugfinn.github.io/TO-DO-LIST',
+    title:       'Figma-to-Code E-Commerce Landing Page',
+    description: 'A pixel-perfect e-commerce website built with React, replicating a professional Figma design with exact precision.',
+    tags:        ['React 19', 'React Router DOM', 'CSS3' , 'Lucide React'],
+    github:      'https://github.com/bugfinn/Figma-to-Code-E-Commerce-Landing-Page',
+    live:        'https://practsite-react-wu57.vercel.app',
     
   },
 ]
@@ -103,7 +103,7 @@ export default function ProjectShowcase() {
             <p
               style={{
                 fontSize:     '14px',
-                color:        'var(--text-2)',
+                color:        'var(--text-1)',
                 lineHeight:   '1.7',
                 marginBottom: '16px',
               }}
@@ -119,7 +119,7 @@ export default function ProjectShowcase() {
                   style={{
                     fontSize:        '11px',
                     fontWeight:      '600',
-                    color:           'var(--text-3)',
+                    color:           'var(--text-2)',
                     backgroundColor: 'var(--bg-subtle)',
                     border:          '1px solid var(--border)',
                     padding:         '3px 9px',

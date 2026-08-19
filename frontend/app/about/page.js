@@ -69,21 +69,23 @@ export default function AboutPage() {
       {/* Bio */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: '36px' }}>
         <p style={{ fontSize: '16px', color: 'var(--text-2)', lineHeight: '1.8' }}>
-          I am a developer actively transitioning from frontend engineering into cloud
-          infrastructure. My background in React and Next.js gives me a unique perspective
-          when building cloud-native applications — I understand both the infrastructure
-          layer and the user-facing product it powers.
-        </p>
-        <p style={{ fontSize: '16px', color: 'var(--text-2)', lineHeight: '1.8' }}>
-          I am currently focused on AWS — working with Lambda, DynamoDB, VPC design,
-          IAM, EC2, and S3. I believe the best cloud engineers understand the full stack,
-          and I am building toward that deliberately and systematically.
-        </p>
-        <p style={{ fontSize: '16px', color: 'var(--text-2)', lineHeight: '1.8' }}>
-          This portfolio itself is a cloud-native project. The blog and contact form are
-          powered by AWS Lambda with native Function URLs and DynamoDB — no API Gateway,
-          no server, just clean serverless architecture at zero cost.
-        </p>
+  I am a Cloud Infrastructure Engineer with a deep foundation in frontend development.
+  I started with React and Next.js, and over time became more interested
+  in the systems running underneath — how requests route, how data persists,
+  how deployments happen without downtime.
+</p>
+<p style={{ fontSize: '16px', color: 'var(--text-2)', lineHeight: '1.8' }}>
+  Right now I am focused on AWS — Lambda, DynamoDB, IAM, VPC, and EC2.
+  I understand how to build the frontend that consumes an API and the
+  serverless backend that powers it. That full-stack awareness is what
+  I bring to infrastructure work.
+</p>
+<p style={{ fontSize: '16px', color: 'var(--text-2)', lineHeight: '1.8' }}>
+  What genuinely excites me is understanding how things work at a systems
+  level — not just making them run, but knowing why they run that way.
+  That curiosity is what pushed me from frontend into cloud, and it is
+  what keeps me learning every day.
+</p>
       </div>
 
       {/* CTAs */}
