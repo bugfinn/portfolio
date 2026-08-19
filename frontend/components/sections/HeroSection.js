@@ -1,4 +1,4 @@
-'use client' // This directive tells Next.js to treat this as a Client Component, allowing event handlers
+'use client' 
 
 import { FiGithub, FiLinkedin } from 'react-icons/fi'
 import { FaXTwitter, FaRegEnvelope } from 'react-icons/fa6'
