@@ -1,18 +1,22 @@
+'use client' // This directive tells Next.js to treat this as a Client Component, allowing event handlers
+
+import { FiGithub, FiLinkedin } from 'react-icons/fi'
+import { FaXTwitter, FaRegEnvelope } from 'react-icons/fa6'
 import Image from 'next/image'
 import Button from '@/components/ui/Button'
 
 const socialLinks = [
-  { label: 'GitHub',   href: 'https://github.com/bugfinn',     external: true  },
-  { label: 'LinkedIn', href: 'https://linkedin.com//Affan Naveed', external: true  },
-  { label: 'X', href: 'https://x.com//AffanNaveed004', external: true  },
-  { label: 'Email',    href: 'mailto:your@email.com',external: false },
+  { label: 'GitHub',   href: 'https://github.com/bugfinn',         external: true,  Icon: FiGithub   },
+  { label: 'LinkedIn', href: 'https://linkedin.com', external: true,  Icon: FiLinkedin },
+  { label: 'X',        href: 'https://x.com',        external: true,  Icon: FaXTwitter },
+  { label: 'Email',    href: 'mailto:affannaveed43@gmail.com',  external: false, Icon: FaRegEnvelope },
 ]
 
 export default function HeroSection() {
   return (
     <section
       style={{
-        padding:  '80px 24px 72px',
+        padding:  '100px 24px 72px',
         maxWidth: '896px',
         margin:   '0 auto',
       }}
@@ -28,13 +32,15 @@ export default function HeroSection() {
         {/* Profile Picture */}
         <div
           style={{
-            width:        '160px',
-            height:       '160px',
+            width:        '200px',
+            height:       '200px',
             borderRadius: '50%',
             overflow:     'hidden',
-            border:       '3px solid var(--border)',
+            border:       '1px solid var(--border)',
             position:     'relative',
-            flexShrink:   0,
+            flexShrink: 0,
+             marginTop:    '50px',
+            
           }}
         >
           <Image
@@ -48,28 +54,20 @@ export default function HeroSection() {
 
         {/* Text */}
         <div style={{ textAlign: 'center' }}>
-          <p
-            style={{
-              fontSize:     '15px',
-              fontWeight:   '500',
-              color:        'var(--accent)',
-              marginBottom: '8px',
-            }}
-          >
-            Hi, I am
-          </p>
+       
 
           <h1
             style={{
               fontSize:      'clamp(32px, 5vw, 48px)',
-              fontWeight:    '800',
+              fontWeight:    'bold',
               letterSpacing: '-0.03em',
               lineHeight:    '1.1',
               color:         'var(--text-1)',
-              marginBottom:  '10px',
+              marginBottom: '10px',
+              wordSpacing:   '0.15em',
             }}
           >
-            Affan
+            Affan Naveed
           </h1>
 
           <p
@@ -83,19 +81,6 @@ export default function HeroSection() {
             Cloud Infrastructure Engineer
           </p>
 
-          <p
-            style={{
-              fontSize:     '15px',
-              color:        'var(--text-2)',
-              lineHeight:   '1.75',
-              maxWidth:     '480px',
-              margin:       '0 auto 28px auto',
-            }}
-          >
-            Building serverless architectures on AWS and shipping cloud-native
-            applications. Frontend background with a deep focus on Lambda,
-            DynamoDB, and automated CI/CD pipelines.
-          </p>
 
           {/* Social Links */}
           <div
@@ -109,20 +94,37 @@ export default function HeroSection() {
           >
             {socialLinks.map(function(link) {
               var tgt = link.external ? '_blank' : '_self'
+              var Icon = link.Icon
               return (
                 <a
                   key={link.label}
                   href={link.href}
                   target={tgt}
                   rel="noopener noreferrer"
+                  aria-label={link.label}
+                  title={link.label} // Added the HTML title attribute to generate native browser tooltips on hover
                   style={{
-                    fontSize:       '13px',
-                    fontWeight:     '500',
-                    color:          'var(--text-3)',
-                    textDecoration: 'none',
+                    color: 'var(--text-3)',
+                    display: 'flex',
+                    transition: 'color 0.2s ease, transform 0.2s ease',
+                  }}
+                  onMouseEnter={(e) => {
+                    // Explicitly forcing the color change on both the anchor container and its child SVG icon
+                    e.currentTarget.style.color = '#3b82f6';
+                    if (e.currentTarget.firstChild) {
+                      e.currentTarget.firstChild.style.color = '#3b82f6';
+                    }
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = 'var(--text-3)';
+                    if (e.currentTarget.firstChild) {
+                      e.currentTarget.firstChild.style.color = 'inherit';
+                    }
+                    e.currentTarget.style.transform = 'translateY(0px)';
                   }}
                 >
-                  {link.label}
+                  <Icon size={30} style={{ transition: 'color 0.2s ease', color: 'inherit' }} />
                 </a>
               )
             })}
@@ -137,8 +139,8 @@ export default function HeroSection() {
               justifyContent: 'center',
             }}
           >
-            <Button href="/#projects" variant="primary" size="lg">
-              View Projects
+            <Button href="/brojects" variant="primary" size="lg">
+              Read My Blog
             </Button>
             <Button href="/#contact" variant="outline" size="lg">
               Contact Me
@@ -148,4 +150,5 @@ export default function HeroSection() {
       </div>
     </section>
   )
+  
 }

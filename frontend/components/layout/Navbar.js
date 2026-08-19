@@ -120,18 +120,19 @@ export default function Navbar() {
         <Link
           href="/"
           style={{
-            fontWeight: '800',
-            fontSize: '20px',
-            letterSpacing: '-0.01em',
+            fontWeight: '700',
+            fontSize: '24px',
+            letterSpacing: '-0.02em',
+            wordSpacing : '0.15em',
             color: 'var(--text-1, #111827)',
             textDecoration: 'none',
             transition: 'opacity 0.2s',
             
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.7')}
+          onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.8')}
           onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
         >
-          Affan
+          Affan Naveed
         </Link>
 
         {/* Desktop Links & Controls */}
@@ -150,7 +151,7 @@ export default function Navbar() {
                   key={href}
                   href={href}
                   style={{
-                    fontSize: '14px',
+                    fontSize: '18px',
                     fontWeight: '500',
                     color: active ? 'var(--accent, #000)' : 'var(--text-2, #6b7280)',
                     textDecoration: 'none',

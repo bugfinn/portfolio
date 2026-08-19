@@ -10,7 +10,7 @@
 
 /* ── Light Mode Tokens ── */
 :root {
-  --bg:          #ffffff;
+  --bg:          #fcfcfc;
   --bg-subtle:   #F8FAFC;
   --bg-card:     #F1F5F9;
   --border:      #E2E8F0;

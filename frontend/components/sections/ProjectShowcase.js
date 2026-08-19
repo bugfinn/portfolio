@@ -5,23 +5,31 @@ const projects = [
     title:       'Serverless Blog Engine',
     description: 'A fully serverless blog backend built on AWS Lambda + DynamoDB with native Function URLs. No API Gateway, zero cold-start cost, and permanently free at personal traffic scale.',
     tags:        ['AWS Lambda', 'DynamoDB', 'Node.js', 'Serverless'],
-    github:      'https://github.com/YOUR_USERNAME/portfolio',
+    github:      'https://github.com/bugfinn/portfolio',
     live:        null,
   },
   {
     title:       'Cloud Portfolio Platform',
     description: 'This portfolio — a Next.js 15 application deployed on Vercel with a fully automated GitOps CI/CD pipeline. Dark mode, responsive design, and AWS-powered dynamic features.',
     tags:        ['Next.js 15', 'Tailwind v4', 'Vercel', 'AWS'],
-    github:      'https://github.com/YOUR_USERNAME/portfolio',
+    github:      'https://github.com/bugfinn/portfolio',
     live:        '#',
   },
   {
-    title:       'More Coming Soon',
-    description: 'Currently building out cloud infrastructure projects focusing on VPC design, EC2 auto-scaling groups, and multi-region deployments. Stay tuned.',
-    tags:        ['AWS', 'Terraform', 'CI/CD'],
-    github:      null,
-    live:        null,
-    placeholder: true,
+    title:       'T0-Do List (First-Project)',
+    description: 'A modular, responsive to-do list web app with dark mode, task filtering, and local storage. Built with vanilla JavaScript and modular CSS.',
+    tags:        ['HTML5', 'JavaScript (ES6 modules) ', 'Local Storage API'],
+    github:      'https://github.com/bugfinn/TO-DO-LIST',
+    live:        'https://bugfinn.github.io/TO-DO-LIST',
+    
+  },
+  {
+    title:       '',
+    description: 'A modular, responsive to-do list web app with dark mode, task filtering, and local storage. Built with vanilla JavaScript and modular CSS.',
+    tags:        ['HTML5', 'JavaScript(ES6 modules)', 'Local Storage API'],
+    github:      'https://github.com/bugfinn/TO-DO-LIST',
+    live:        'https://bugfinn.github.io/TO-DO-LIST',
+    
   },
 ]
 
@@ -41,7 +49,7 @@ export default function ProjectShowcase() {
         <p style={{ fontSize: '12px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent)', marginBottom: '8px' }}>
           What I&apos;ve Built
         </p>
-        <h2 style={{ fontSize: '28px', fontWeight: '700', letterSpacing: '-0.02em', color: 'var(--text-1)' }}>
+        <h2 style={{ fontSize: '32px', fontWeight: '700', letterSpacing: '-0.02em', color: 'var(--text-1)' }}>
           Projects
         </h2>
       </div>

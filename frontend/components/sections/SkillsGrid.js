@@ -1,23 +1,15 @@
-const skills = [
+const strengths = [
   {
-    icon:  '☁️',
-    title: 'Cloud & AWS',
-    tags:  ['Lambda', 'DynamoDB', 'EC2', 'S3', 'IAM', 'CloudWatch', 'VPC'],
+    text: 'Cloud Architecture & Serverless: AWS Lambda, DynamoDB, and building zero-cost, high-performance edge APIs.',
   },
   {
-    icon:  '🌐',
-    title: 'Networking',
-    tags:  ['VPC Design', 'Subnets', 'Route Tables', 'Security Groups', 'NAT Gateway'],
+    text: 'Network Engineering & Security: VPC design, IPsec VPN tunnels, subnet routing, and secure environments.',
   },
   {
-    icon:  '⚙️',
-    title: 'CI/CD & GitOps',
-    tags:  ['GitHub Actions', 'Vercel', 'Git', 'Docker', 'Infrastructure as Code'],
+    text: 'Automated GitOps & CI/CD: GitHub Actions, Vercel edge deployments, and automated infrastructure pipelines.',
   },
   {
-    icon:  '🖥️',
-    title: 'Frontend',
-    tags:  ['Next.js', 'React', 'Tailwind CSS', 'JavaScript', 'REST APIs'],
+    text: 'High-Performance Frontend UI: Next.js App Router, Tailwind CSS, and mobile-first, responsive interface design.',
   },
 ]
 
@@ -26,73 +18,72 @@ export default function SkillsGrid() {
     <section
       id="skills"
       style={{
-        padding:         '64px 24px',
-        maxWidth:        '896px',
-        margin:          '0 auto',
-        borderTop:       '1px solid var(--border)',
+        padding:   '80px 24px',
+        maxWidth:  '896px',
+        margin:    '0 auto',
+        borderTop: '1px solid var(--border)',
       }}
     >
-      {/* Heading */}
-      <div style={{ marginBottom: '40px' }}>
-        <p style={{ fontSize: '12px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent)', marginBottom: '8px' }}>
-          What I Work With
+      <div style={{ marginBottom: '44px' }}>
+        <p
+          style={{
+            fontSize:      '13px',
+            fontWeight:    '700',
+            textTransform: 'uppercase',
+            letterSpacing: '0.12em',
+            color:         'var(--accent)',
+            marginBottom:  '8px',
+          }}
+        >
+          Core Strengths
         </p>
-        <h2 style={{ fontSize: '28px', fontWeight: '700', letterSpacing: '-0.02em', color: 'var(--text-1)' }}>
-          Skills & Technologies
+        <h2
+          style={{
+            fontSize:      '32px',
+            fontWeight:    '700',
+            letterSpacing: '-0.03em',
+            color:         'var(--text-1)',
+          }}
+        >
+          What I am good at building and shipping
         </h2>
       </div>
 
-      {/* Grid */}
       <div
+        id="strengthsGrid"
         style={{
           display:             'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+         gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
           gap:                 '16px',
         }}
       >
-        {skills.map(({ icon, title, tags }) => (
+        {strengths.map(({ text }, i) => (
           <div
-            key={title}
+            key={i}
             style={{
               backgroundColor: 'var(--bg-card)',
               border:          '1px solid var(--border)',
+              borderLeft:      '4px solid var(--accent)',
               borderRadius:    '12px',
+              boxShadow:       '0 1px 2px rgba(0, 0, 0, 0.05)',
               padding:         '24px',
             }}
           >
-            <span style={{ fontSize: '28px', display: 'block', marginBottom: '12px' }}>
-              {icon}
-            </span>
-            <h3
+            <p
               style={{
-                fontSize:     '15px',
-                fontWeight:   '700',
-                color:        'var(--text-1)',
-                marginBottom: '14px',
+                fontSize:   '15px',
+                fontWeight: '600',
+                lineHeight: '1.6',
+                color:      'var(--text-1)',
+                margin:     0,
               }}
             >
-              {title}
-            </h3>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-              {tags.map((tag) => (
-                <span
-                  key={tag}
-                  style={{
-                    fontSize:        '11px',
-                    fontWeight:      '500',
-                    color:           'var(--accent)',
-                    backgroundColor: 'var(--accent-lt)',
-                    padding:         '3px 9px',
-                    borderRadius:    '99px',
-                  }}
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
+              {text}
+            </p>
           </div>
         ))}
       </div>
+
     </section>
   )
 }

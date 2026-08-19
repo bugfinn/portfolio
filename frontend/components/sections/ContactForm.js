@@ -154,12 +154,11 @@ setTimeout(() => {
         <p style={{ fontSize: '12px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent)', marginBottom: '8px' }}>
           Get In Touch
         </p>
-        <h2 style={{ fontSize: '28px', fontWeight: '700', letterSpacing: '-0.02em', color: 'var(--text-1)', marginBottom: '10px' }}>
+        <h2 style={{ fontSize: '32px', fontWeight: '700', letterSpacing: '-0.02em', color: 'var(--text-1)', marginBottom: '10px' }}>
           Contact
         </h2>
         <p style={{ fontSize: '15px', color: 'var(--text-2)', maxWidth: '440px', lineHeight: '1.7' }}>
-          Have a project in mind or want to talk cloud? Drop me a message and
-          I&apos;ll get back to you within 24 hours.
+         Reach out to discuss your cloud strategy or explore business opportunities.
         </p>
       </div>
 
@@ -219,7 +218,7 @@ setTimeout(() => {
             name="message"
             required
             rows={5}
-            placeholder="Tell me about your project or question..."
+            placeholder="Ask a question or share your business inquiry..."
             value={form.message}
             onChange={handleChange}
             style={{ ...inputStyle, resize: 'vertical', minHeight: '120px' }}
