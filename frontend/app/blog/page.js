@@ -37,7 +37,7 @@ export default async function BlogPage() {
         >
           Blog
         </h1>
-        <p style={{ fontSize: '15px', color: 'var(--text-2)', lineHeight: '1.7' }}>
+        <p style={{ fontSize: '15px', fontWeight: '500', color: 'var(--text-1)', lineHeight: '1.7' }}>
           Articles on cloud infrastructure, AWS, serverless architecture, and engineering.
         </p>
       </div>
@@ -90,7 +90,7 @@ export default async function BlogPage() {
                     style={{
                       fontSize:     '12px',
                       fontWeight:   '600',
-                      color:        'var(--text-3)',
+                      color:        'var(--text-2)',
                       marginBottom: '8px',
                     }}
                   >

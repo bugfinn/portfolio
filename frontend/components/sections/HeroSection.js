@@ -74,7 +74,7 @@ export default function HeroSection() {
             style={{
               fontSize:     '18px',
               fontWeight:   '500',
-              color:        'var(--text-2)',
+              color:        'var(--text-1)',
               marginBottom: '16px',
             }}
           >
@@ -104,7 +104,7 @@ export default function HeroSection() {
                   aria-label={link.label}
                   title={link.label} // Added the HTML title attribute to generate native browser tooltips on hover
                   style={{
-                    color: 'var(--text-3)',
+                    color: 'var(--text-2)',
                     display: 'flex',
                     transition: 'color 0.2s ease, transform 0.2s ease',
                   }}
@@ -139,7 +139,7 @@ export default function HeroSection() {
               justifyContent: 'center',
             }}
           >
-            <Button href="/brojects" variant="primary" size="lg">
+            <Button href="/blog" variant="primary" size="lg">
               Read My Blog
             </Button>
             <Button href="/#contact" variant="outline" size="lg">

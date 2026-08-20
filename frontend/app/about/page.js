@@ -68,19 +68,19 @@ export default function AboutPage() {
 
       {/* Bio */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: '36px' }}>
-        <p style={{ fontSize: '16px', color: 'var(--text-2)', lineHeight: '1.8' }}>
+        <p style={{ fontSize: '16px', color: 'var(--text-1)', lineHeight: '1.8' }}>
   I am a Cloud Infrastructure Engineer with a deep foundation in frontend development.
   I started with React and Next.js, and over time became more interested
   in the systems running underneath — how requests route, how data persists,
   how deployments happen without downtime.
 </p>
-<p style={{ fontSize: '16px', color: 'var(--text-2)', lineHeight: '1.8' }}>
+<p style={{ fontSize: '16px', color: 'var(--text-1)', lineHeight: '1.8' }}>
   Right now I am focused on AWS — Lambda, DynamoDB, IAM, VPC, and EC2.
   I understand how to build the frontend that consumes an API and the
   serverless backend that powers it. That full-stack awareness is what
   I bring to infrastructure work.
 </p>
-<p style={{ fontSize: '16px', color: 'var(--text-2)', lineHeight: '1.8' }}>
+<p style={{ fontSize: '16px', color: 'var(--text-1)', lineHeight: '1.8' }}>
   What genuinely excites me is understanding how things work at a systems
   level — not just making them run, but knowing why they run that way.
   That curiosity is what pushed me from frontend into cloud, and it is
