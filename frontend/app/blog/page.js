@@ -86,6 +86,7 @@ export default async function BlogPage() {
                 style={{ textDecoration: 'none' }}
               >
                 <article
+                  className="blog-card-interactive"
                   style={{
                     backgroundColor: 'var(--bg-card)',
                     border:          '1px solid var(--border)',

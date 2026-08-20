@@ -39,6 +39,16 @@
   --accent-h:    #60A5FA;
   --accent-lt:   #172554;
 }
+/* Blog Card Hover State */
+.blog-card-interactive {
+  transition: all 0.2s ease-in-out;
+}
+
+.blog-card-interactive:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px -8px rgba(0, 0, 0, 0.15);
+  border-color: var(--accent);
+}
 
 /* ── Base Styles ── */
 html {
