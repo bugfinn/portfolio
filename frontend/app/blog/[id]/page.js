@@ -1,6 +1,7 @@
 import { getBlogPost } from '@/lib/api'
 import { notFound }    from 'next/navigation'
 import Link            from 'next/link'
+import ReactMarkdown   from 'react-markdown' // <-- 1. Imported the parser
 
 export default async function BlogPostPage({ params }) {
   const resolvedParams = await params
@@ -10,6 +11,13 @@ export default async function BlogPostPage({ params }) {
   if (!post) {
     notFound()
   }
+
+  // 2. Format the date to match your blog list page
+  const formattedDate = new Date(post.Date).toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  })
 
   return (
     <div style={{ maxWidth: '720px', margin: '0 auto', padding: '64px 24px 80px' }}>
@@ -28,7 +36,7 @@ export default async function BlogPostPage({ params }) {
           marginBottom:   '40px',
         }}
       >
-        Back to Blog
+        ← Back to Blog
       </Link>
 
       {/* Post header */}
@@ -47,7 +55,8 @@ export default async function BlogPostPage({ params }) {
             fontWeight:   '500',
           }}
         >
-          {post.Date}
+          {/* Added the formatted date, read time, and author */}
+          {formattedDate}{post.ReadTime ? ' · ' + post.ReadTime : ''} · Affan
         </p>
         <h1
           style={{
@@ -76,14 +85,15 @@ export default async function BlogPostPage({ params }) {
 
       {/* Post content */}
       <div
+        className="markdown-content"
         style={{
           fontSize:   '15px',
           color:      'var(--text-2)',
           lineHeight: '1.85',
-          whiteSpace: 'pre-wrap',
         }}
       >
-        {post.Content}
+        {/* 3. The Magic Markdown Renderer */}
+        <ReactMarkdown>{post.Content}</ReactMarkdown>
       </div>
     </div>
   )
