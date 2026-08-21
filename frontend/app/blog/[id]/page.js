@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { getBlogPost } from '@/lib/api'
 import { notFound }    from 'next/navigation'
 import Link            from 'next/link'
@@ -29,15 +30,35 @@ export default async function BlogPostPage({ params }) {
           display:        'inline-flex',
           alignItems:     'center',
           gap:            '6px',
-          fontSize:       '14px',
+          fontSize:       '16px',
           fontWeight:     '500',
-          color:          'var(--text-3)',
+          color:          'var(--text-2)',
           textDecoration: 'none',
           marginBottom:   '40px',
         }}
       >
-        ← Back to Blog
+        ← Back to Blog  
       </Link>
+            {post.CoverImage && (
+        <div
+          style={{
+            position:     'relative',
+            width:        '100%',
+            aspectRatio:  '16 / 9',
+            borderRadius: '12px',
+            overflow:     'hidden',
+            marginBottom: '40px',
+          }}
+        >
+          <Image
+            src={post.CoverImage}
+            alt={post.Title}
+            fill
+            style={{ objectFit: 'cover' }}
+            priority
+          />
+        </div>
+      )}
 
       {/* Post header */}
       <header
