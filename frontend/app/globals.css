@@ -160,6 +160,32 @@ body {
   box-sizing: border-box;
   border-color: var(--border);
 }
+/* ── Custom Scrollbar ── */
+
+/* For Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--text-3) var(--bg);
+}
+
+/* For WebKit browsers (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg); 
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--text-3); 
+  border-radius: 10px;
+  border: 3px solid var(--bg); 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--text-2); 
+}
 
 @keyframes drain {
   from { width: 100%; }
