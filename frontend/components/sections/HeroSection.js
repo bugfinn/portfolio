@@ -102,14 +102,14 @@ export default function HeroSection() {
                   target={tgt}
                   rel="noopener noreferrer"
                   aria-label={link.label}
-                  title={link.label} // Added the HTML title attribute to generate native browser tooltips on hover
+                  title={link.label} 
                   style={{
                     color: 'var(--text-2)',
                     display: 'flex',
                     transition: 'color 0.2s ease, transform 0.2s ease',
                   }}
                   onMouseEnter={(e) => {
-                    // Explicitly forcing the color change on both the anchor container and its child SVG icon
+                   
                     e.currentTarget.style.color = '#3b82f6';
                     if (e.currentTarget.firstChild) {
                       e.currentTarget.firstChild.style.color = '#3b82f6';
@@ -117,7 +117,7 @@ export default function HeroSection() {
                     e.currentTarget.style.transform = 'translateY(-2px)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.color = 'var(--text-3)';
+                    e.currentTarget.style.color = 'var(--text-2)';
                     if (e.currentTarget.firstChild) {
                       e.currentTarget.firstChild.style.color = 'inherit';
                     }
