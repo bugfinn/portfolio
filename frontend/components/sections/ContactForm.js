@@ -183,6 +183,7 @@ setTimeout(() => {
             id="name"
             name="name"
             type="text"
+            autoComplete= "name"
             required
             placeholder="Your name"
             value={form.name}
@@ -200,6 +201,7 @@ setTimeout(() => {
             id="email"
             name="email"
             type="email"
+            autoComplete="email"
             required
             placeholder="your@email.com"
             value={form.email}
