@@ -1,3 +1,4 @@
+import ViewCounter from './ViewCounter'
 export default function Footer() {
   const year = new Date().getFullYear();
 
@@ -17,11 +18,12 @@ export default function Footer() {
             Affan
           </span>{' '}
           · Next.js + AWS · {year}
+          <ViewCounter />
         </p>
 
         <nav className="flex items-center gap-5">
           <a
-            href="https://github.com"
+            href="https://github.com/bugfinn"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:opacity-75 transition-opacity"
@@ -41,7 +43,7 @@ export default function Footer() {
           </a>
 
           <a
-            href="mailto:you@email.com"
+            href="mailto:affannaveed43@gmail.com"
             className="hover:opacity-75 transition-opacity"
             style={{ color: 'var(--text-3)' }}
           >
