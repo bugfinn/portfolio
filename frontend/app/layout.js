@@ -11,7 +11,7 @@ const inter = Inter({
 })
 
 export const metadata = {
-  title: 'Affan | Cloud Infrastructure Engineer',
+  title: 'Affan Naveed',
   description:
     'Personal portfolio of Affan — Cloud Infrastructure Engineer, AWS enthusiast, and frontend developer.',
 }
