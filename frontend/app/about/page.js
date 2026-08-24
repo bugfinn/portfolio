@@ -3,19 +3,19 @@ import Button from '@/components/ui/Button'
 
 const timeline = [
   {
-    year:  '2024 — Present',
+    year: '2024 — Present',
     title: 'Cloud Infrastructure Engineer',
-    desc:  'Transitioning from frontend engineering into cloud infrastructure. Building on AWS with Lambda, DynamoDB, VPC design, and automated CI/CD pipelines via GitHub Actions and Vercel.',
+    desc: 'Expanded focus beyond the browser to engineer scalable, zero-cost cloud architectures. I design serverless APIs with AWS Lambda and DynamoDB, configure custom VPC networks, and automate CI/CD workflows using GitHub Actions.',
   },
-  {
+    {
     year:  '2022 — 2024',
     title: 'Frontend Engineer',
-    desc:  'Built production web applications with React, Next.js, and Tailwind CSS. Developed strong foundations in component architecture, performance optimization, and responsive design.',
+    desc:  'Focused heavily on the React ecosystem. Translated pixel-perfect Figma designs into live code and built complex data dashboards using Next.js, Vite, Tailwind CSS, and component libraries like shadcn/ui.',
   },
   {
     year:  '2021 — 2022',
     title: 'Started Web Development',
-    desc:  'Began with HTML, CSS, and JavaScript. Quickly progressed into React and modern frontend tooling. Built several personal and freelance projects.',
+    desc:  'Wrote my first lines of HTML and CSS and immediately got hooked. Spent this year mastering core JavaScript fundamentals before making the jump to React to start building interactive side projects.',
   },
 ]
 

@@ -47,7 +47,7 @@ export default function HeroSection() {
             src="/images/portfolio.jpeg"
             alt="Affan"
             fill={true}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            sizes="200px"
             style={{ objectFit: 'cover' }}
             priority={true}
           />
