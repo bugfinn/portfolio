@@ -26,15 +26,18 @@
 
 /* ── Dark Mode Tokens ── */
 .dark {
-  --bg:          #0F172A;
-  --bg-subtle:   #1E293B;
-  --bg-card:     #283548;
-  --border:      #334155;
+  /* Warm, deep charcoal backgrounds to match the light mode's warmth */
+  --bg:          #1c1917; 
+  --bg-subtle:   #292524; 
+  --bg-card:     #312e2b; 
+  --border:      #44403c; 
 
-  --text-1:      #F8FAFC;
-  --text-2:      #CBD5E1;
-  --text-3:      #64748B;
+  /* Soft, warm off-white text to eliminate harsh eye strain */
+  --text-1:      #e7e5e4; 
+  --text-2:      #a8a29e; 
+  --text-3:      #78716c; 
 
+  /* Accents remain untouched — they pop beautifully against warm grays */
   --accent:      #3B82F6;
   --accent-h:    #60A5FA;
   --accent-lt:   #172554;
@@ -65,11 +68,14 @@ body {
 /* Markdown Parser Styles */
 .markdown-content p {
   margin-bottom: 1.5em;
+  line-height: 1.8;
+  font-size: 16px;
+  color: var(--text-2);
 }
 
 .markdown-content h2 {
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 26px;
+  font-weight: 600;
   color: var(--text-1);
   margin-top: 2em;
   margin-bottom: 0.75em;
@@ -86,7 +92,7 @@ body {
 }
 
 .markdown-content strong {
-  font-weight: 700;
+  font-weight: 600;
   color: var(--text-1);
 }
 
