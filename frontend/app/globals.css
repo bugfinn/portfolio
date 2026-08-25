@@ -5,7 +5,11 @@
 
 /* ── Register Inter as the default sans font ── */
 @theme {
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+ /* Body text defaults to Public Sans */
+  --font-sans: var(--font-public), ui-sans-serif, system-ui, sans-serif;
+  
+  /* Headings will use Space Grotesk */
+  --font-heading: var(--font-space), ui-sans-serif, system-ui, sans-serif;
 }
 
 /* ── Light Mode Tokens ── */
@@ -63,6 +67,9 @@ body {
   background-color: var(--bg);
   color: var(--text-1);
   transition: background-color 0.2s ease, color 0.2s ease;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
 }
 
 /* Markdown Parser Styles */
