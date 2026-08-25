@@ -2,7 +2,10 @@ import Image from 'next/image'
 import { getBlogPost } from '@/lib/api'
 import { notFound }    from 'next/navigation'
 import Link            from 'next/link'
-import ReactMarkdown   from 'react-markdown' // <-- 1. Imported the parser
+import ReactMarkdown from 'react-markdown'
+import rehypeSlug       from 'rehype-slug'                    // add
+import { extractHeadings } from '@/lib/extractHeadings'       // add
+import TableOfContents  from '@/components/ui/TableOfContents' // add// <-- 1. Imported the parser
 
 export default async function BlogPostPage({ params }) {
   const resolvedParams = await params
@@ -11,6 +14,7 @@ export default async function BlogPostPage({ params }) {
 
   if (!post) {
     notFound()
+    
   }
 
   // 2. Format the date to match your blog list page
@@ -19,7 +23,7 @@ export default async function BlogPostPage({ params }) {
     day: 'numeric',
     year: 'numeric'
   })
-
+const headings = extractHeadings(post.Content)
   return (
     <div style={{ maxWidth: '720px', margin: '0 auto', padding: '64px 24px 80px' }}>
 
@@ -103,6 +107,7 @@ export default async function BlogPostPage({ params }) {
           </p>
         )}
       </header>
+          <TableOfContents headings={headings} />
 
       {/* Post content */}
       <div
@@ -113,8 +118,7 @@ export default async function BlogPostPage({ params }) {
           lineHeight: '1.85',
         }}
       >
-        {/* 3. The Magic Markdown Renderer */}
-        <ReactMarkdown>{post.Content}</ReactMarkdown>
+        <ReactMarkdown rehypePlugins={[rehypeSlug]}>{post.Content}</ReactMarkdown>
       </div>
     </div>
   )

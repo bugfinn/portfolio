@@ -73,6 +73,7 @@ body {
   color: var(--text-1);
   margin-top: 2em;
   margin-bottom: 0.75em;
+  scroll-margin-top: 84px;
 }
 
 .markdown-content h3 {
@@ -81,6 +82,7 @@ body {
   color: var(--text-1);
   margin-top: 1.75em;
   margin-bottom: 0.6em;
+  scroll-margin-top: 84px;
 }
 
 .markdown-content strong {
