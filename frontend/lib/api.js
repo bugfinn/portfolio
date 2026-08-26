@@ -18,7 +18,7 @@ export async function getBlogPosts() {
 export async function getBlogPost(id) {
   if (!POST_URL) return null
   try {
-    const res = await fetch(POST_URL + '?id=' + id, { next: { revalidate: 60 } })
+    const res = await fetch(POST_URL + '?id=' + encodeURIComponent(id), { next: { revalidate: 60 } })
     if (!res.ok) return null
     return res.json()
   } catch (e) {
@@ -27,13 +27,13 @@ export async function getBlogPost(id) {
   }
 }
 
-export async function postContact(name, email, message) {
+export async function postContact(name, email, message, website = '', turnstileToken = '') {
   if (!CONTACT_URL) return { success: false }
   try {
     const res = await fetch(CONTACT_URL, {
       method:  'POST',
       headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify({ name, email, message }),
+      body:    JSON.stringify({ name, email, message, website, turnstileToken }),
     })
     return res.json()
   } catch (e) {

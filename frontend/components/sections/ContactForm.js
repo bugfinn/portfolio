@@ -1,66 +1,62 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import Button from '@/components/ui/Button'
 
 export default function ContactForm() {
-  const [form,   setForm]   = useState({ name: '', email: '', message: '' })
+  const [form,   setForm]   = useState({ name: '', email: '', message: '', website: '', turnstileToken: '' })
   const [status, setStatus] = useState('idle') // idle | sending | sent | error
+
+  const widgetIdRef   = useRef(null)
+  const containerRef  = useRef(null)
+
+  const renderTurnstile = useCallback(() => {
+    if (window.turnstile && containerRef.current) {
+      widgetIdRef.current = window.turnstile.render(containerRef.current, {
+        sitekey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY,
+        callback: (token) => setForm((prev) => ({ ...prev, turnstileToken: token })),
+      })
+    }
+  }, [])
+
+  // Callback ref fires every time the widget's container div mounts,
+  // including when returning to the form after 'sent' or 'error' unmounts it
+  const turnstileRef = useCallback((node) => {
+    containerRef.current = node
+    if (node) renderTurnstile()
+  }, [renderTurnstile])
+
+  useEffect(() => {
+    if (window.turnstile) return
+    const script = document.createElement('script')
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js'
+    script.async = true
+    script.onload = renderTurnstile
+    document.body.appendChild(script)
+  }, [renderTurnstile])
 
   const handleChange = (e) =>
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
 
   const handleSubmit = async (e) => {
-  e.preventDefault()
-  setStatus('sending')
-  try {
-    const { postContact } = await import('@/lib/api')
-    const result = await postContact(form.name, form.email, form.message)
-    if (result.success) {
-      setStatus('sent')
-      setForm({ name: '', email: '', message: '' })
-setTimeout(() => {
-  setStatus('idle')
-}, 5000)
-      if (status === 'error') {
-  return (
-    <section
-      id="contact"
-      style={{ padding: '64px 24px', maxWidth: '896px', margin: '0 auto', borderTop: '1px solid var(--border)' }}
-    >
-      <div
-        style={{
-          textAlign:       'center',
-          padding:         '48px 24px',
-          backgroundColor: 'var(--bg-card)',
-          border:          '1px solid var(--border)',
-          borderRadius:    '12px',
-        }}
-      >
-        <p style={{ fontSize: '32px', marginBottom: '12px' }}>❌</p>
-        <h3 style={{ fontSize: '18px', fontWeight: '700', color: 'var(--text-1)', marginBottom: '8px' }}>
-          Something went wrong
-        </h3>
-        <p style={{ fontSize: '14px', color: 'var(--text-2)', marginBottom: '16px' }}>
-          Please try again or email me directly.
-        </p>
-        <button
-          onClick={() => setStatus('idle')}
-          style={{ color: 'var(--accent)', cursor: 'pointer', background: 'none', border: 'none', fontSize: '14px', fontWeight: '600' }}
-        >
-          Try again
-        </button>
-      </div>
-    </section>
-  )
-}
-    } else {
+    e.preventDefault()
+    setStatus('sending')
+    try {
+      const { postContact } = await import('@/lib/api')
+      const result = await postContact(form.name, form.email, form.message, form.website, form.turnstileToken)
+      if (result.success) {
+        setStatus('sent')
+        setForm({ name: '', email: '', message: '', website: '', turnstileToken: '' })
+        setTimeout(() => {
+          setStatus('idle')
+        }, 5000)
+      } else {
+        setStatus('error')
+      }
+    } catch {
       setStatus('error')
     }
-  } catch {
-    setStatus('error')
   }
-}
 
   const inputStyle = {
     width:           '100%',
@@ -83,61 +79,94 @@ setTimeout(() => {
     marginBottom: '6px',
   }
 
-  if (status === 'sent') {
-  return (
-    <section
-      id="contact"
-      style={{ padding: '64px 24px', maxWidth: '896px', margin: '0 auto', borderTop: '1px solid var(--border)' }}
-    >
-      <div
-        style={{
-          padding:         '48px 24px',
-          backgroundColor: 'var(--bg-card)',
-          border:          '1px solid var(--border)',
-          borderRadius:    '12px',
-          position:        'relative',
-          overflow:        'hidden',
-          textAlign:       'center',
-        }}
+  if (status === 'error') {
+    return (
+      <section
+        id="contact"
+        style={{ padding: '64px 24px', maxWidth: '896px', margin: '0 auto', borderTop: '1px solid var(--border)' }}
       >
-        <p style={{ fontSize: '32px', marginBottom: '12px' }}>✅</p>
-        <h3 style={{ fontSize: '18px', fontWeight: '700', color: 'var(--text-1)', marginBottom: '8px' }}>
-          Message sent!
-        </h3>
-        <p style={{ fontSize: '14px', color: 'var(--text-2)', marginBottom: '20px' }}>
-          Thanks for reaching out — I will get back to you soon.
-        </p>
-        <button
-          onClick={() => setStatus('idle')}
-          style={{
-            color:      'var(--accent)',
-            cursor:     'pointer',
-            background: 'none',
-            border:     'none',
-            fontSize:   '13px',
-            fontWeight: '600',
-            padding:    0,
-          }}
-        >
-          Send another message
-        </button>
-
-        {/* Progress bar */}
         <div
           style={{
-            position:        'absolute',
-            bottom:          0,
-            left:            0,
-            height:          '3px',
-            backgroundColor: 'var(--accent)',
-            animation:       'drain 5s linear forwards',
-            width:           '100%',
+            textAlign:       'center',
+            padding:         '48px 24px',
+            backgroundColor: 'var(--bg-card)',
+            border:          '1px solid var(--border)',
+            borderRadius:    '12px',
           }}
-        />
-      </div>
-    </section>
-  )
-}
+        >
+          <p style={{ fontSize: '32px', marginBottom: '12px' }}>❌</p>
+          <h3 style={{ fontSize: '18px', fontWeight: '700', color: 'var(--text-1)', marginBottom: '8px' }}>
+            Something went wrong
+          </h3>
+          <p style={{ fontSize: '14px', color: 'var(--text-2)', marginBottom: '16px' }}>
+            Please try again or email me directly.
+          </p>
+          <button
+            onClick={() => setStatus('idle')}
+            style={{ color: 'var(--accent)', cursor: 'pointer', background: 'none', border: 'none', fontSize: '14px', fontWeight: '600' }}
+          >
+            Try again
+          </button>
+        </div>
+      </section>
+    )
+  }
+
+  if (status === 'sent') {
+    return (
+      <section
+        id="contact"
+        style={{ padding: '64px 24px', maxWidth: '896px', margin: '0 auto', borderTop: '1px solid var(--border)' }}
+      >
+        <div
+          style={{
+            padding:         '48px 24px',
+            backgroundColor: 'var(--bg-card)',
+            border:          '1px solid var(--border)',
+            borderRadius:    '12px',
+            position:        'relative',
+            overflow:        'hidden',
+            textAlign:       'center',
+          }}
+        >
+          <p style={{ fontSize: '32px', marginBottom: '12px' }}>✅</p>
+          <h3 style={{ fontSize: '18px', fontWeight: '700', color: 'var(--text-1)', marginBottom: '8px' }}>
+            Message sent!
+          </h3>
+          <p style={{ fontSize: '14px', color: 'var(--text-2)', marginBottom: '20px' }}>
+            Thanks for reaching out — I will get back to you soon.
+          </p>
+          <button
+            onClick={() => setStatus('idle')}
+            style={{
+              color:      'var(--accent)',
+              cursor:     'pointer',
+              background: 'none',
+              border:     'none',
+              fontSize:   '13px',
+              fontWeight: '600',
+              padding:    0,
+            }}
+          >
+            Send another message
+          </button>
+
+          {/* Progress bar */}
+          <div
+            style={{
+              position:        'absolute',
+              bottom:          0,
+              left:            0,
+              height:          '3px',
+              backgroundColor: 'var(--accent)',
+              animation:       'drain 5s linear forwards',
+              width:           '100%',
+            }}
+          />
+        </div>
+      </section>
+    )
+  }
 
   return (
     <section
@@ -176,6 +205,24 @@ setTimeout(() => {
           padding:         '32px',
         }}
       >
+        {/* Honeypot — invisible to real visitors, catches bots that auto-fill every field */}
+        <input
+          type="text"
+          name="website"
+          value={form.website}
+          onChange={handleChange}
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            left:     '-9999px',
+            width:    '1px',
+            height:   '1px',
+            overflow: 'hidden',
+          }}
+        />
+
         {/* Name */}
         <div>
           <label htmlFor="name" style={labelStyle}>Name</label>
@@ -183,7 +230,7 @@ setTimeout(() => {
             id="name"
             name="name"
             type="text"
-            autoComplete= "name"
+            autoComplete="name"
             required
             placeholder="Your name"
             value={form.name}
@@ -228,6 +275,9 @@ setTimeout(() => {
             onBlur={(e)   => (e.target.style.borderColor = 'var(--border)')}
           />
         </div>
+
+        {/* Turnstile widget */}
+        <div ref={turnstileRef} />
 
         <Button
           type="submit"
