@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next"
 import { Space_Grotesk, Public_Sans } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/layout/Navbar'
@@ -50,6 +51,7 @@ export default function RootLayout({ children }) {
         </main>
         <Footer />
         <ScrollToTop />
+        <Analytics />
       </body>
     </html>
   )
