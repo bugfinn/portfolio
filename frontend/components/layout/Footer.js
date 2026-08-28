@@ -33,7 +33,7 @@ export default function Footer() {
           </a>
 
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/affan-naveed-b2696237a/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:opacity-75 transition-opacity"

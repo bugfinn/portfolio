@@ -8,7 +8,7 @@ import Button from '@/components/ui/Button'
 const socialLinks = [
   { label: 'GitHub',   href: 'https://github.com/bugfinn',         external: true,  Icon: FiGithub   },
   { label: 'LinkedIn', href: 'https://linkedin.com', external: true,  Icon: FiLinkedin },
-  { label: 'X',        href: 'https://x.com',        external: true,  Icon: FaXTwitter },
+  { label: 'X',        href: 'https://x.com/AffanNaveed004',        external: true,  Icon: FaXTwitter },
   { label: 'Email',    href: 'mailto:affannaveed43@gmail.com',  external: false, Icon: FaRegEnvelope },
 ]
 
