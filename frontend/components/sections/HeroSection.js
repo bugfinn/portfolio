@@ -7,7 +7,7 @@ import Button from '@/components/ui/Button'
 
 const socialLinks = [
   { label: 'GitHub',   href: 'https://github.com/bugfinn',         external: true,  Icon: FiGithub   },
-  { label: 'LinkedIn', href: 'https://linkedin.com', external: true,  Icon: FiLinkedin },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/affan-naveed-b2696237a/', external: true,  Icon: FiLinkedin },
   { label: 'X',        href: 'https://x.com/AffanNaveed004',        external: true,  Icon: FaXTwitter },
   { label: 'Email',    href: 'mailto:affannaveed43@gmail.com',  external: false, Icon: FaRegEnvelope },
 ]
