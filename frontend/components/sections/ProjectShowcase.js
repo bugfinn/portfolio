@@ -59,6 +59,7 @@ export default function ProjectShowcase() {
         {projects.map(({ title, description, tags, github, live, placeholder }) => (
           <div
             key={title}
+            className="blog-card-interactive"
             style={{
               backgroundColor: 'var(--bg-card)',
               border:          '1px solid var(--border)',

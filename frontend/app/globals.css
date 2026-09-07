@@ -49,14 +49,24 @@
 /* Blog Card Hover State */
 .blog-card-interactive {
   transition: all 0.2s ease-in-out;
+  -webkit-tap-highlight-color: transparent;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
-.blog-card-interactive:hover {
-  transform: translateY(-4px);
+@media (hover: hover) {
+  .blog-card-interactive:hover {
+    transform: translateY(-4px) translateZ(0);
+    box-shadow: 0 12px 20px -8px rgba(0, 0, 0, 0.15);
+    border-color: var(--accent);
+  }
+}
+
+.blog-card-interactive:active {
+  transform: translateY(-4px) translateZ(0);
   box-shadow: 0 12px 20px -8px rgba(0, 0, 0, 0.15);
   border-color: var(--accent);
 }
-
 /* ── Base Styles ── */
 html {
   scroll-behavior: smooth;
