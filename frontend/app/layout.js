@@ -38,11 +38,35 @@ const themeScript = `
   })()
 `
 
+// Handles modern UI toggle-on-tap behavior for interactive blog cards on mobile
+const mobileCardScript = `
+  (function() {
+    if (typeof window !== 'undefined') {
+      document.addEventListener('click', function(event) {
+        var clickedCard = event.target.closest('.blog-card-interactive');
+        var cards = document.querySelectorAll('.blog-card-interactive');
+        
+        if (clickedCard) {
+          cards.forEach(function(card) {
+            if (card !== clickedCard) card.classList.remove('is-active');
+          });
+          clickedCard.classList.toggle('is-active');
+        } else {
+          cards.forEach(function(card) {
+            card.classList.remove('is-active');
+          });
+        }
+      });
+    }
+  })()
+`
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${publicSans.variable}`} suppressHydrationWarning data-scroll-behavior="smooth">
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+         <script dangerouslySetInnerHTML={{ __html: mobileCardScript }} />
       </head>
       <body className="font-sans antialiased flex flex-col min-h-screen">
         <Navbar />

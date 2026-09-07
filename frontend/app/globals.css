@@ -46,27 +46,43 @@
   --accent-h:    #60A5FA;
   --accent-lt:   #172554;
 }
+
 /* Blog Card Hover State */
 .blog-card-interactive {
-  transition: all 0.2s ease-in-out;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+              background-color 0.25s ease, 
+              border-color 0.25s ease, 
+              box-shadow 0.25s ease;
   -webkit-tap-highlight-color: transparent;
+  transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
-  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
 }
 
 @media (hover: hover) {
   .blog-card-interactive:hover {
-    transform: translateY(-4px) translateZ(0);
+    transform: translate3d(0, -5px, 0);
     box-shadow: 0 12px 20px -8px rgba(0, 0, 0, 0.15);
     border-color: var(--accent);
   }
 }
 
-.blog-card-interactive:active {
-  transform: translateY(-4px) translateZ(0);
+.blog-card-interactive.is-active {
+  transform: translate3d(0, -5px, 0);
   box-shadow: 0 12px 20px -8px rgba(0, 0, 0, 0.15);
   border-color: var(--accent);
 }
+
+/* Dark Mode Overrides */
+.dark .blog-card-interactive:hover,
+.dark .blog-card-interactive.is-active {
+  background-color: #3b3733; 
+  box-shadow: 
+    0 20px 35px -10px rgba(255, 255, 255, 0.08),
+    0 8px 20px -12px rgba(255, 255, 255, 0.04),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
 /* ── Base Styles ── */
 html {
   scroll-behavior: smooth;
