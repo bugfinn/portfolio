@@ -1,139 +1,191 @@
-import Button from '@/components/ui/Button'
+import Button from '@/components/ui/Button';
 
 const projects = [
   {
-    title:       'Serverless Blog Engine',
-    description: 'A fully serverless blog backend built on AWS Lambda + DynamoDB with native Function URLs. No API Gateway, zero cold-start cost, and permanently free at personal traffic scale.',
-    tags:        ['AWS Lambda', 'DynamoDB', 'Node.js', 'Serverless'],
-    github:      'https://github.com/bugfinn/portfolio',
-    live:        null,
+    title: 'Serverless Blog Engine',
+    description:
+      'A fully serverless blog backend built on AWS Lambda + DynamoDB with native Function URLs. No API Gateway, zero cold-start cost, and permanently free at personal traffic scale.',
+    tags: ['AWS Lambda', 'DynamoDB', 'Node.js', 'Serverless'],
+    github: 'https://github.com/bugfinn/portfolio',
+    live: null,
   },
   {
-    title:       'Cloud Portfolio Platform',
-    description: 'This portfolio — a Next.js 15 application deployed on Vercel with a fully automated GitOps CI/CD pipeline. Dark mode, responsive design, and AWS-powered dynamic features.',
-    tags:        ['Next.js 15', 'Tailwind v4', 'Vercel', 'AWS'],
-    github:      'https://github.com/bugfinn/portfolio',
-    live:        '#',
+    title: 'Cloud Portfolio Platform',
+    description:
+      'This portfolio — a Next.js 15 application deployed on Vercel with a fully automated GitOps CI/CD pipeline. Dark mode, responsive design, and AWS-powered dynamic features.',
+    tags: ['Next.js 15', 'Tailwind v4', 'Vercel', 'AWS'],
+    github: 'https://github.com/bugfinn/portfolio',
+    live: '#',
   },
   {
-    title:       'Task Management Web Application',
-    description: 'A modular, responsive task management web application featuring dark mode, task filtering, and persistent local storage. Engineered with vanilla JavaScript (ES6) and modular CSS to ensure high performance and clean architecture.',
-    tags:        ['HTML5', 'JavaScript (ES6 modules) ', 'Local Storage API' , 'CSS3'],
-    github:      'https://github.com/bugfinn/TO-DO-LIST',
-    live:        'https://bugfinn.github.io/TO-DO-LIST',
-    
+    title: 'FinOpsGuard',
+    description:
+      'An event-driven, serverless cloud financial governance engine. FinOpsGuard automates cloud cost monitoring, enforces tagging policies, and safely remediates orphaned resources—built entirely on AWS Always Free tier services ($0/month).',
+    tags: [
+      'Terraform',
+      'AWS Lambda (Python)',
+      'OPA',
+      'GitHub Actions(CI/CD)',
+      'AWS IAM & SNS',
+      'Slack Webhooks',
+    ],
+    github: 'https://github.com/bugfinn/finopsguard',
   },
   {
-    title:       'Figma-to-Code E-Commerce Landing Page',
-    description: 'A pixel-perfect e-commerce website built with React, replicating a professional Figma design with exact precision.',
-    tags:        ['React 19', 'React Router DOM', 'CSS3' , 'Lucide React'],
-    github:      'https://github.com/bugfinn/Figma-to-Code-E-Commerce-Landing-Page',
-    live:        'https://practsite-react-wu57.vercel.app',
-    
+    title: 'Figma-to-Code E-Commerce Landing Page',
+    description:
+      'A pixel-perfect e-commerce website built with React, replicating a professional Figma design with exact precision.',
+    tags: ['React 19', 'React Router DOM', 'CSS3', 'Lucide React'],
+    github: 'https://github.com/bugfinn/Figma-to-Code-E-Commerce-Landing-Page',
+    live: 'https://practsite-react-wu57.vercel.app',
   },
-]
+  {
+    title: 'Task Management Web Application',
+    description:
+      'A modular, responsive task management web application featuring dark mode, task filtering, and persistent local storage. Engineered with vanilla JavaScript (ES6) and modular CSS to ensure high performance and clean architecture.',
+    tags: ['HTML5', 'JavaScript (ES6 modules) ', 'Local Storage API', 'CSS3'],
+    github: 'https://github.com/bugfinn/TO-DO-LIST',
+    live: 'https://bugfinn.github.io/TO-DO-LIST',
+  },
+];
 
 export default function ProjectShowcase() {
   return (
     <section
       id="projects"
       style={{
-        padding:   '64px 24px',
-        maxWidth:  '896px',
-        margin:    '0 auto',
+        padding: '64px 24px',
+        maxWidth: '896px',
+        margin: '0 auto',
         borderTop: '1px solid var(--border)',
       }}
     >
       {/* Heading */}
       <div style={{ marginBottom: '40px' }}>
-        <p style={{ fontSize: '12px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--accent)', marginBottom: '8px' }}>
+        <p
+          style={{
+            fontSize: '12px',
+            fontWeight: '700',
+            textTransform: 'uppercase',
+            letterSpacing: '0.1em',
+            color: 'var(--accent)',
+            marginBottom: '8px',
+          }}
+        >
           What I&apos;ve Built
         </p>
-        <h2 style={{ fontSize: '32px', fontWeight: '700', letterSpacing: '-0.02em', color: 'var(--text-1)' }}>
+        <h2
+          style={{
+            fontSize: '32px',
+            fontWeight: '700',
+            letterSpacing: '-0.02em',
+            color: 'var(--text-1)',
+          }}
+        >
           Projects
         </h2>
       </div>
 
       {/* Cards */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-        {projects.map(({ title, description, tags, github, live, placeholder }) => (
-          <div
-            key={title}
-            className="blog-card-interactive"
-            style={{
-              backgroundColor: 'var(--bg-card)',
-              border:          '1px solid var(--border)',
-              borderRadius:    '12px',
-              padding:         '28px',
-              opacity:         placeholder ? 0.6 : 1,
-            }}
-          >
-            {/* Title row */}
+        {projects.map(
+          ({ title, description, tags, github, live, placeholder }) => (
             <div
+              key={title}
+              className="blog-card-interactive"
               style={{
-                display:        'flex',
-                alignItems:     'flex-start',
-                justifyContent: 'space-between',
-                gap:            '16px',
-                marginBottom:   '10px',
-                flexWrap:       'wrap',
+                backgroundColor: 'var(--bg-card)',
+                border: '1px solid var(--border)',
+                borderRadius: '12px',
+                padding: '28px',
+                opacity: placeholder ? 0.6 : 1,
               }}
             >
-              <h3 style={{ fontSize: '17px', fontWeight: '700', color: 'var(--text-1)' }}>
-                {title}
-              </h3>
-
-              {/* Links */}
-              {!placeholder && (
-                <div style={{ display: 'flex', gap: '10px', flexShrink: 0 }}>
-                  {github && (
-                    <Button href={github} variant="outline" size="sm" target="_blank" rel="noopener noreferrer">
-                      GitHub ↗
-                    </Button>
-                  )}
-                  {live && (
-                    <Button href={live} variant="primary" size="sm" target="_blank" rel="noopener noreferrer">
-                      Live ↗
-                    </Button>
-                  )}
-                </div>
-              )}
-            </div>
-
-            {/* Description */}
-            <p
-              style={{
-                fontSize:     '14px',
-                color:        'var(--text-1)',
-                lineHeight:   '1.7',
-                marginBottom: '16px',
-              }}
-            >
-              {description}
-            </p>
-
-            {/* Tags */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-              {tags.map((tag) => (
-                <span
-                  key={tag}
+              {/* Title row */}
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  justifyContent: 'space-between',
+                  gap: '16px',
+                  marginBottom: '10px',
+                  flexWrap: 'wrap',
+                }}
+              >
+                <h3
                   style={{
-                    fontSize:        '11px',
-                    fontWeight:      '600',
-                    color:           'var(--text-2)',
-                    backgroundColor: 'var(--bg-subtle)',
-                    border:          '1px solid var(--border)',
-                    padding:         '3px 9px',
-                    borderRadius:    '99px',
+                    fontSize: '17px',
+                    fontWeight: '700',
+                    color: 'var(--text-1)',
                   }}
                 >
-                  {tag}
-                </span>
-              ))}
+                  {title}
+                </h3>
+
+                {/* Links */}
+                {!placeholder && (
+                  <div style={{ display: 'flex', gap: '10px', flexShrink: 0 }}>
+                    {github && (
+                      <Button
+                        href={github}
+                        variant="outline"
+                        size="sm"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        GitHub ↗
+                      </Button>
+                    )}
+                    {live && (
+                      <Button
+                        href={live}
+                        variant="primary"
+                        size="sm"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Live ↗
+                      </Button>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {/* Description */}
+              <p
+                style={{
+                  fontSize: '14px',
+                  color: 'var(--text-1)',
+                  lineHeight: '1.7',
+                  marginBottom: '16px',
+                }}
+              >
+                {description}
+              </p>
+
+              {/* Tags */}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                {tags.map((tag) => (
+                  <span
+                    key={tag}
+                    style={{
+                      fontSize: '11px',
+                      fontWeight: '600',
+                      color: 'var(--text-2)',
+                      backgroundColor: 'var(--bg-subtle)',
+                      border: '1px solid var(--border)',
+                      padding: '3px 9px',
+                      borderRadius: '99px',
+                    }}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ),
+        )}
       </div>
     </section>
-  )
+  );
 }
