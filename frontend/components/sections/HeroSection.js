@@ -1,16 +1,19 @@
-'use client' 
+'use client'
 
-import { FiGithub, FiLinkedin } from 'react-icons/fi'
+import { FiGithub, FiLinkedin, FiInstagram } from 'react-icons/fi'
 import { FaXTwitter, FaRegEnvelope } from 'react-icons/fa6'
 import Image from 'next/image'
 import Button from '@/components/ui/Button'
+import { FloatingDock } from '@/components/ui/FloatingDock'
 
 const socialLinks = [
-  { label: 'GitHub',   href: 'https://github.com/bugfinn',         external: true,  Icon: FiGithub   },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/affan-naveed-b2696237a/', external: true,  Icon: FiLinkedin },
-  { label: 'X',        href: 'https://x.com/AffanNaveed004',        external: true,  Icon: FaXTwitter },
-  { label: 'Email',    href: 'mailto:affannaveed43@gmail.com',  external: false, Icon: FaRegEnvelope },
+  { title: 'GitHub',    href: 'https://github.com',                          icon: <FiGithub className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
+  { title: 'LinkedIn',  href: 'https://linkedin.com', icon: <FiLinkedin className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
+  { title: 'Twitter',         href: 'https://x.com',                        icon: <FaXTwitter className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
+  { title: 'Instagram', href: 'https://www.instagram.com/affvnish',              icon: <FiInstagram className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
+  { title: 'Email',     href: 'mailto:affannaveed43@gmail.com',                      icon: <FaRegEnvelope className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
 ]
+
 
 export default function HeroSection() {
   return (
@@ -40,7 +43,7 @@ export default function HeroSection() {
             position:     'relative',
             flexShrink: 0,
              marginTop:    '50px',
-            
+
           }}
         >
           <Image
@@ -55,7 +58,7 @@ export default function HeroSection() {
 
         {/* Text */}
         <div style={{ textAlign: 'center' }}>
-       
+
 
           <h1
             style={{
@@ -82,53 +85,9 @@ export default function HeroSection() {
             Cloud Infrastructure Engineer
           </p>
 
-
           {/* Social Links */}
-          <div
-            style={{
-              display:        'flex',
-              gap:            '16px',
-              marginBottom:   '28px',
-              justifyContent: 'center',
-              flexWrap:       'wrap',
-            }}
-          >
-            {socialLinks.map(function(link) {
-              var tgt = link.external ? '_blank' : '_self'
-              var Icon = link.Icon
-              return (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target={tgt}
-                  rel="noopener noreferrer"
-                  aria-label={link.label}
-                  title={link.label} 
-                  style={{
-                    color: 'var(--text-2)',
-                    display: 'flex',
-                    transition: 'color 0.2s ease, transform 0.2s ease',
-                  }}
-                  onMouseEnter={(e) => {
-                   
-                    e.currentTarget.style.color = '#3b82f6';
-                    if (e.currentTarget.firstChild) {
-                      e.currentTarget.firstChild.style.color = '#3b82f6';
-                    }
-                    e.currentTarget.style.transform = 'translateY(-2px)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.color = 'var(--text-2)';
-                    if (e.currentTarget.firstChild) {
-                      e.currentTarget.firstChild.style.color = 'inherit';
-                    }
-                    e.currentTarget.style.transform = 'translateY(0px)';
-                  }}
-                >
-                  <Icon size={30} style={{ transition: 'color 0.2s ease', color: 'inherit' }} />
-                </a>
-              )
-            })}
+          <div style={{ marginBottom: '28px', display: 'flex', justifyContent: 'center' }}>
+            <FloatingDock items={socialLinks} />
           </div>
 
           {/* CTA Buttons */}
@@ -151,5 +110,5 @@ export default function HeroSection() {
       </div>
     </section>
   )
-  
+
 }
