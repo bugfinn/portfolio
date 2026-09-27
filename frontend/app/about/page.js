@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Button from '@/components/ui/Button'
+import { MovingBorderButton } from '@/components/ui/MovingBorder'
 
 const timeline = [
   {
@@ -98,9 +99,9 @@ export default function AboutPage() {
         >
           Download Resume
         </Button>
-        <Button href="/#contact" variant="outline" size="lg">
+        <MovingBorderButton href="/#contact" variant="outline" size="lg">
           Contact Me
-        </Button>
+        </MovingBorderButton>
       </div>
 
       {/* Timeline */}

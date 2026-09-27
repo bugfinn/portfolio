@@ -5,11 +5,13 @@ import { FaXTwitter, FaRegEnvelope } from 'react-icons/fa6'
 import Image from 'next/image'
 import Button from '@/components/ui/Button'
 import { FloatingDock } from '@/components/ui/FloatingDock'
+import Link from 'next/link'
+import { MovingBorderButton } from '@/components/ui/MovingBorder'
 
 const socialLinks = [
-  { title: 'GitHub',    href: 'https://github.com',                          icon: <FiGithub className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
-  { title: 'LinkedIn',  href: 'https://linkedin.com', icon: <FiLinkedin className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
-  { title: 'Twitter',         href: 'https://x.com',                        icon: <FaXTwitter className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
+  { title: 'GitHub',    href: 'https://github.com/bugfinn',                          icon: <FiGithub className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
+  { title: 'LinkedIn',  href: 'https://www.linkedin.com/in/affan-naveed-b2696237a/', icon: <FiLinkedin className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
+  { title: 'Twitter',   href: 'https://x.com/AffanNaveed004',                        icon: <FaXTwitter className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
   { title: 'Instagram', href: 'https://www.instagram.com/affvnish',              icon: <FiInstagram className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
   { title: 'Email',     href: 'mailto:affannaveed43@gmail.com',                      icon: <FaRegEnvelope className="h-full w-full text-neutral-500 dark:text-neutral-300" /> },
 ]
@@ -102,9 +104,9 @@ export default function HeroSection() {
             <Button href="/blog" variant="primary" size="lg">
               Read My Blog
             </Button>
-            <Button href="/#contact" variant="outline" size="lg">
-              Contact Me
-            </Button>
+           <MovingBorderButton as={Link} href="/#contact" duration={3000}>
+  Contact Me
+</MovingBorderButton>
           </div>
         </div>
       </div>
