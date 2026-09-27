@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Button from '@/components/ui/Button'
 import { MovingBorderButton } from '@/components/ui/MovingBorder'
 
+
 const timeline = [
   {
     year: '2024 — Present',
@@ -99,9 +100,9 @@ export default function AboutPage() {
         >
           Download Resume
         </Button>
-        <MovingBorderButton href="/#contact" variant="outline" size="lg">
-          Contact Me
-        </MovingBorderButton>
+        <MovingBorderButton href="/#contact" duration={3000} as="a">
+  Contact Me
+</MovingBorderButton>
       </div>
 
       {/* Timeline */}

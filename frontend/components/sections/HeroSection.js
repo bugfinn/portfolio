@@ -104,7 +104,7 @@ export default function HeroSection() {
             <Button href="/blog" variant="primary" size="lg">
               Read My Blog
             </Button>
-           <MovingBorderButton as={Link} href="/#contact" duration={3000}>
+           <MovingBorderButton href="/#contact" duration={3000} as="a">
   Contact Me
 </MovingBorderButton>
           </div>
