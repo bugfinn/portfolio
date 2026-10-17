@@ -24,7 +24,7 @@ function FloatingDockDesktop({ items, className }) {
     <motion.div
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
-      className={'mx-auto flex h-16 items-end gap-3 rounded-2xl bg-neutral-120/80 px-4 pb-3 dark:bg-neutral-900/40 ' + (className || '')}
+      className={'mx-auto flex h-16 items-end gap-3.5 rounded-2x1 bg-transparent px-4 pb-3 ' + (className || '')}
     >
       {items.map((item) => (
         <IconContainer mouseX={mouseX} key={item.title} {...item} />
@@ -70,7 +70,7 @@ function IconContainer({ mouseX, title, icon, href }) {
         style={{ width, height }}
         onMouseEnter={handleMouseEnter} 
         onMouseLeave={() => setHovered(false)}
-        className="relative flex aspect-square items-center justify-center rounded-full bg-gray-250 dark:bg-neutral-800 transition-colors shadow-sm"
+        className="social-circle-icon relative flex aspect-square items-center justify-center rounded-full"
       >
         <AnimatePresence>
           {hovered && (
@@ -78,7 +78,7 @@ function IconContainer({ mouseX, title, icon, href }) {
               initial={{ opacity: 0, y: 10, x: '-50%' }}
               animate={{ opacity: 1, y: 0, x: '-50%' }}
               exit={{ opacity: 0, y: 2, x: '-50%' }}
-              className="absolute -top-8 left-1/2 w-fit rounded-md border border-gray-200 bg-gray px-2 py-0.5 text-xs font-medium whitespace-pre text-neutral-800 shadow-sm dark:border-neutral-800 dark:bg-neutral-800 dark:text-white"
+              className="pointer-events-none absolute -top-9 left-1/2 w-fit rounded-md border border-gray-200 bg-white/95 px-2 py-0.5 text-xs whitespace-pre text-neutral-700 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white shadow-sm"
             >
               {title}
             </motion.div>

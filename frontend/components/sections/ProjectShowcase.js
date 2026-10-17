@@ -15,7 +15,7 @@ const projects = [
       'This portfolio — a Next.js 15 application deployed on Vercel with a fully automated GitOps CI/CD pipeline. Dark mode, responsive design, and AWS-powered dynamic features.',
     tags: ['Next.js 15', 'Tailwind v4', 'Vercel', 'AWS'],
     github: 'https://github.com/bugfinn/portfolio',
-    live: '#',
+    live: 'null',
   },
   {
     title: 'FinOpsGuard',

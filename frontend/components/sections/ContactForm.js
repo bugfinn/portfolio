@@ -7,32 +7,61 @@ export default function ContactForm() {
   const [form,   setForm]   = useState({ name: '', email: '', message: '', website: '', turnstileToken: '' })
   const [status, setStatus] = useState('idle') // idle | sending | sent | error
 
-  const widgetIdRef   = useRef(null)
-  const containerRef  = useRef(null)
+  const widgetIdRef  = useRef(null)
+  const containerRef = useRef(null)
 
   const renderTurnstile = useCallback(() => {
-    if (window.turnstile && containerRef.current) {
-      widgetIdRef.current = window.turnstile.render(containerRef.current, {
-        sitekey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY,
-        callback: (token) => setForm((prev) => ({ ...prev, turnstileToken: token })),
-      })
+    if (!window.turnstile || !containerRef.current) return
+
+    if (widgetIdRef.current !== null) {
+      try {
+        window.turnstile.remove(widgetIdRef.current)
+      } catch {}
+      widgetIdRef.current = null
     }
+
+    containerRef.current.innerHTML = ''
+
+    widgetIdRef.current = window.turnstile.render(containerRef.current, {
+      sitekey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY,
+      callback: (token) => setForm((prev) => ({ ...prev, turnstileToken: token })),
+      'expired-callback': () => setForm((prev) => ({ ...prev, turnstileToken: '' })),
+    })
   }, [])
 
-  // Callback ref fires every time the widget's container div mounts,
-  // including when returning to the form after 'sent' or 'error' unmounts it
   const turnstileRef = useCallback((node) => {
     containerRef.current = node
-    if (node) renderTurnstile()
+    if (node) {
+      renderTurnstile()
+    } else if (widgetIdRef.current !== null && window.turnstile) {
+      try {
+        window.turnstile.remove(widgetIdRef.current)
+      } catch {}
+      widgetIdRef.current = null
+    }
   }, [renderTurnstile])
 
   useEffect(() => {
-    if (window.turnstile) return
-    const script = document.createElement('script')
-    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js'
-    script.async = true
-    script.onload = renderTurnstile
-    document.body.appendChild(script)
+    const scriptId = 'cf-turnstile-script'
+    let script = document.getElementById(scriptId)
+
+    if (window.turnstile) {
+      renderTurnstile()
+      return
+    }
+
+    if (!script) {
+      script = document.createElement('script')
+      script.id = scriptId
+      script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'
+      script.async = true
+      script.defer = true
+      script.onload = renderTurnstile
+      document.body.appendChild(script)
+    } else {
+      script.addEventListener('load', renderTurnstile)
+      return () => script.removeEventListener('load', renderTurnstile)
+    }
   }, [renderTurnstile])
 
   const handleChange = (e) =>
@@ -187,7 +216,7 @@ export default function ContactForm() {
           Contact
         </h2>
         <p style={{ fontSize: '15px', color: 'var(--text-2)', maxWidth: '440px', lineHeight: '1.7' }}>
-         Reach out to discuss your cloud strategy or explore business opportunities.
+          Reach out to discuss your cloud strategy or explore business opportunities.
         </p>
       </div>
 
@@ -195,34 +224,17 @@ export default function ContactForm() {
       <form
         onSubmit={handleSubmit}
         style={{
+          position:        'relative',
           display:         'flex',
           flexDirection:   'column',
           gap:             '20px',
-          maxWidth:        '560px',
+          maxWidth:        '100%',
           backgroundColor: 'var(--bg-card)',
           border:          '1px solid var(--border)',
           borderRadius:    '12px',
           padding:         '32px',
         }}
       >
-        {/* Honeypot — invisible to real visitors, catches bots that auto-fill every field */}
-        <input
-          type="text"
-          name="website"
-          value={form.website}
-          onChange={handleChange}
-          tabIndex={-1}
-          autoComplete="off"
-          aria-hidden="true"
-          style={{
-            position: 'absolute',
-            left:     '-9999px',
-            width:    '1px',
-            height:   '1px',
-            overflow: 'hidden',
-          }}
-        />
-
         {/* Name */}
         <div>
           <label htmlFor="name" style={labelStyle}>Name</label>
@@ -273,6 +285,34 @@ export default function ContactForm() {
             style={{ ...inputStyle, resize: 'vertical', minHeight: '120px' }}
             onFocus={(e)  => (e.target.style.borderColor = 'var(--accent)')}
             onBlur={(e)   => (e.target.style.borderColor = 'var(--border)')}
+          />
+        </div>
+
+        {/* Honeypot — placed below real fields & named '_gotcha_hp' so browser Autofill never touches it */}
+        <div
+          aria-hidden="true"
+          style={{
+            position:      'absolute',
+            left:          '-9999px',
+            top:           'auto',
+            width:         '1px',
+            height:        '1px',
+            overflow:      'hidden',
+            opacity:       0,
+            pointerEvents: 'none',
+          }}
+        >
+          <input
+            type="text"
+            name="_gotcha_hp"
+            value={form.website}
+            onChange={(e) => setForm((prev) => ({ ...prev, website: e.target.value }))}
+            tabIndex={-1}
+            autoComplete="new-password"
+            data-1p-ignore="true"
+            data-lpignore="true"
+            data-bwignore="true"
+            data-form-type="other"
           />
         </div>
 

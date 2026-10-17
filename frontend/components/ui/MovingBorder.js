@@ -10,7 +10,7 @@ import {
 } from 'motion/react'
 
 export function MovingBorderButton({
-  borderRadius = '1.75rem',
+  borderRadius = '14px',
   children,
   as: Component = 'button',
   containerClassName,
@@ -21,27 +21,54 @@ export function MovingBorderButton({
 }) {
   return (
     <Component
-      className={'relative h-15 w-48 overflow-hidden bg-transparent p-[1px] text-base ' + (containerClassName || '')}
-      style={{ borderRadius }}
+      className={
+        'btn-cta-group relative inline-flex overflow-hidden bg-transparent text-[15px] transition-transform duration-200 hover:-translate-y-0.5 ' +
+        (containerClassName || '')
+      }
+      style={{
+        borderRadius: borderRadius,
+        height: '46px',
+        padding: '1.5px',
+        textDecoration: 'none',
+      }}
       {...otherProps}
     >
-      <div className="absolute inset-0" style={{ borderRadius: `calc(${borderRadius} * 0.96)` }}>
-        <MovingBorder duration={duration} rx="30%" ry="30%">
+      {/* Subtle static border track so the button outline stays crisp */}
+      <div
+        className="absolute inset-0"
+        style={{ backgroundColor: 'var(--border)', opacity: 0.65, borderRadius }}
+      />
+
+      {/* Animated rotating blue beam */}
+      <div
+        className="absolute inset-0"
+        style={{ borderRadius: `calc(${borderRadius} * 0.92)` }}
+      >
+        <MovingBorder duration={duration} rx="28%" ry="28%">
           <div
-            className={'h-20 w-20 opacity-80 ' + (borderClassName || '')}
-            style={{ background: 'radial-gradient(var(--accent) 40%, transparent 60%)' }}
+            style={{
+              background: 'radial-gradient(var(--accent) 45%, transparent 65%)',
+            }}
+            className={
+              'h-24 w-24 opacity-90 ' + (borderClassName || '')
+            }
           />
         </MovingBorder>
       </div>
 
+      {/* Inner button face */}
       <div
         style={{
           backgroundColor: 'var(--bg-card)',
-          borderColor: 'var(--border)',
           color: 'var(--text-1)',
-          borderRadius: `calc(${borderRadius} * 0.96)`,
+          borderRadius: '12.5px',
+          padding: '0 26.5px',
+          gap: '8px',
         }}
-        className={'relative flex h-full w-full items-center justify-center border font-semibold antialiased backdrop-blur-xl ' + (className || '')}
+        className={
+          'relative z-10 inline-flex h-full w-full items-center justify-center font-semibold whitespace-nowrap antialiased ' +
+          (className || '')
+        }
       >
         {children}
       </div>

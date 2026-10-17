@@ -5,54 +5,54 @@
 
 /* ── Register Inter as the default sans font ── */
 @theme {
- /* Body text defaults to Public Sans */
+  /* Body text defaults to Public Sans */
   --font-sans: var(--font-public), ui-sans-serif, system-ui, sans-serif;
-  
+
   /* Headings will use Space Grotesk */
   --font-heading: var(--font-space), ui-sans-serif, system-ui, sans-serif;
 }
 
 /* ── Light Mode Tokens ── */
 :root {
-  --bg:          #E2DCDC;
-  --bg-subtle:   #DAD4D4;
-  --bg-card:     #D8D2D2;
-  --border:      #cec7c7;
+  --bg: #E2DCDC;
+  --bg-subtle: #DAD4D4;
+  --bg-card: #D8D2D2;
+  --border: #cec7c7;
 
-  --text-1:      #0F172A;
-  --text-2:      #475569;
-  --text-3:      #94A3B8;
+  --text-1: #0F172A;
+  --text-2: #475569;
+  --text-3: #94A3B8;
 
-  --accent:      #2563EB;
-  --accent-h:    #1D4ED8;
-  --accent-lt:   #EFF6FF;
+  --accent: #2563EB;
+  --accent-h: #1D4ED8;
+  --accent-lt: #EFF6FF;
 }
 
 /* ── Dark Mode Tokens ── */
 .dark {
   /* Warm, deep charcoal backgrounds to match the light mode's warmth */
-  --bg:          #1c1917; 
-  --bg-subtle:   #292524; 
-  --bg-card:     #312e2b; 
-  --border:      #44403c; 
+  --bg: #1c1917;
+  --bg-subtle: #292524;
+  --bg-card: #312e2b;
+  --border: #44403c;
 
   /* Soft, warm off-white text to eliminate harsh eye strain */
-  --text-1:      #e7e5e4; 
-  --text-2:      #a8a29e; 
-  --text-3:      #78716c; 
+  --text-1: #e7e5e4;
+  --text-2: #a8a29e;
+  --text-3: #78716c;
 
   /* Accents remain untouched — they pop beautifully against warm grays */
-  --accent:      #3B82F6;
-  --accent-h:    #60A5FA;
-  --accent-lt:   #172554;
+  --accent: #3B82F6;
+  --accent-h: #60A5FA;
+  --accent-lt: #172554;
 }
 
 /* Blog Card Hover State */
 .blog-card-interactive {
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
-              background-color 0.25s ease, 
-              border-color 0.25s ease, 
-              box-shadow 0.25s ease;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
   -webkit-tap-highlight-color: transparent;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
@@ -76,8 +76,8 @@
 /* Dark Mode Overrides */
 .dark .blog-card-interactive:hover,
 .dark .blog-card-interactive.is-active {
-  background-color: #3b3733; 
-  box-shadow: 
+  background-color: #3b3733;
+  box-shadow:
     0 20px 35px -10px rgba(255, 255, 255, 0.08),
     0 8px 20px -12px rgba(255, 255, 255, 0.04),
     0 0 0 1px rgba(255, 255, 255, 0.06);
@@ -94,7 +94,13 @@ body {
   color: var(--text-1);
   transition: background-color 0.2s ease, color 0.2s ease;
 }
-h1, h2, h3, h4, h5, h6 {
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
 }
 
@@ -197,10 +203,12 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 10px;
   margin: 1.5em 0;
 }
+
 * {
   box-sizing: border-box;
   border-color: var(--border);
 }
+
 /* ── Custom Scrollbar ── */
 
 /* For Firefox */
@@ -215,20 +223,134 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg); 
+  background: var(--bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--text-3); 
+  background-color: var(--text-3);
   border-radius: 10px;
-  border: 3px solid var(--bg); 
+  border: 3px solid var(--bg);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: var(--text-2); 
+  background-color: var(--text-2);
 }
 
 @keyframes drain {
-  from { width: 100%; }
-  to   { width: 0%; }
+  from {
+    width: 100%;
+  }
+
+  to {
+    width: 0%;
+  }
+}
+
+/* ============================================================
+   CTA BUTTON ICON ANIMATIONS (HOVER-ONLY, OFF AT REST)
+   ============================================================ */
+@keyframes arrowSlideBounce {
+  0% {
+    transform: translateX(0);
+  }
+
+  40% {
+    transform: translateX(5px);
+  }
+
+  70% {
+    transform: translateX(2px);
+  }
+
+  100% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes downloadBounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(3.5px);
+  }
+}
+
+@keyframes mailWiggle {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  30% {
+    transform: rotate(-14deg) translateY(-2px) scale(1.15);
+  }
+
+  65% {
+    transform: rotate(10deg) translateY(-1px) scale(1.12);
+  }
+
+  100% {
+    transform: rotate(-4deg) translateY(-1px) scale(1.1);
+  }
+}
+
+.btn-cta-group .anim-arrow,
+.btn-cta-group .anim-download,
+.btn-cta-group .anim-mail {
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s ease;
+}
+
+.btn-cta-group:hover .anim-arrow {
+  animation: arrowSlideBounce 0.65s ease-in-out infinite alternate;
+}
+
+.btn-cta-group:hover .anim-download {
+  animation: downloadBounce 0.65s ease-in-out infinite;
+}
+
+.btn-cta-group:hover .anim-mail {
+  animation: mailWiggle 0.65s ease-in-out infinite alternate;
+  color: var(--accent);
+}
+
+/* ============================================================
+   FREE SPACE CIRCLES FOR SOCIAL DOCK ICONS
+   ============================================================ */
+.social-circle-icon {
+  background-color: rgba(255, 255, 255, 0.68);
+  border: 1.5px solid #b5acac;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.07);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.dark .social-circle-icon {
+  background-color: #292524;
+  border-color: #57534e;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.social-circle-icon svg {
+  color: var(--text-1);
+  transition: color 0.2s ease;
+}
+
+.social-circle-icon:hover {
+  border-color: var(--accent);
+  box-shadow: 0 6px 14px -3px rgba(37, 99, 235, 0.35);
+}
+
+.social-circle-icon:hover svg {
+  color: var(--accent) !important;
+}
+/* Keep theme background & text color on browser autofill */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill {
+  -webkit-text-fill-color: var(--text-1);
+  -webkit-box-shadow: 0 0 0px 1000px var(--bg-card) inset;
+  transition: background-color 5000s ease-in-out 0s;
 }
