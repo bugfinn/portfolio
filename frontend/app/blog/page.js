@@ -1,46 +1,55 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import { getBlogPosts } from '@/lib/api'
+import Image from 'next/image';
+import Link from 'next/link';
+import { getBlogPosts } from '@/lib/api';
 
 export const metadata = {
   title: 'Blog — Affan',
-  description: 'Articles on cloud infrastructure, AWS, serverless architecture, and frontend engineering.',
-}
+  description:
+    'Articles on cloud infrastructure, AWS, serverless architecture, and frontend engineering.',
+};
 
 export default async function BlogPage() {
-  const posts = await getBlogPosts()
-  
+  const posts = await getBlogPosts();
 
   return (
-    <div style={{ maxWidth: '896px', margin: '0 auto', padding: '64px 24px 80px' }}>
-
+    <div
+      style={{ maxWidth: '896px', margin: '0 auto', padding: '64px 24px 80px' }}
+    >
       {/* Heading */}
       <div style={{ marginBottom: '48px' }}>
         <p
           style={{
-            fontSize:      '12px',
-            fontWeight:    '700',
+            fontSize: '12px',
+            fontWeight: '700',
             textTransform: 'uppercase',
             letterSpacing: '0.1em',
-            color:         'var(--accent)',
-            marginBottom:  '8px',
+            color: 'var(--accent)',
+            marginBottom: '8px',
           }}
         >
           Writing
         </p>
         <h1
           style={{
-            fontSize:      '32px',
-            fontWeight:    '800',
+            fontSize: '32px',
+            fontWeight: '800',
             letterSpacing: '-0.02em',
-            color:         'var(--text-1)',
-            marginBottom:  '10px',
+            color: 'var(--text-1)',
+            marginBottom: '10px',
           }}
         >
           Blog
         </h1>
-        <p style={{ fontSize: '15px', fontWeight: '500', color: 'var(--text-1)', lineHeight: '1.7' }}>
-          Articles on cloud infrastructure, AWS, serverless architecture, and engineering.
+        <p
+          style={{
+            fontSize: '15px',
+            fontWeight: '500',
+            color: 'var(--text-1)',
+            lineHeight: '1.7',
+          }}
+        >
+          Articles on cloud infrastructure, AWS, serverless architecture, and
+          engineering.
         </p>
       </div>
 
@@ -48,19 +57,19 @@ export default async function BlogPage() {
       {posts.length === 0 ? (
         <div
           style={{
-            textAlign:       'center',
-            padding:         '80px 24px',
+            textAlign: 'center',
+            padding: '80px 24px',
             backgroundColor: 'var(--bg-card)',
-            border:          '1px solid var(--border)',
-            borderRadius:    '12px',
+            border: '1px solid var(--border)',
+            borderRadius: '12px',
           }}
         >
           <p style={{ fontSize: '32px', marginBottom: '16px' }}>✍️</p>
           <h2
             style={{
-              fontSize:     '18px',
-              fontWeight:   '700',
-              color:        'var(--text-1)',
+              fontSize: '18px',
+              fontWeight: '700',
+              color: 'var(--text-1)',
               marginBottom: '8px',
             }}
           >
@@ -72,13 +81,16 @@ export default async function BlogPage() {
         </div>
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-          {posts.map(function(post) {
-            var slug = post.PK.replace('BLOG#', '')
-            const formattedDate = new Date(post.Date).toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric'
-  });
+          {posts.map(function (post) {
+            var slug = post.PK.replace('BLOG#', '');
+            const formattedDate = new Date(post.Date).toLocaleDateString(
+              'en-US',
+              {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric',
+              },
+            );
             return (
               <Link
                 key={post.PK}
@@ -89,27 +101,27 @@ export default async function BlogPage() {
                   className="blog-card-interactive"
                   style={{
                     backgroundColor: 'var(--bg-card)',
-                    border:          '1px solid var(--border)',
-                    borderRadius:    '12px',
-                    overflow:        'hidden',
+                    border: '1px solid var(--border)',
+                    borderRadius: '12px',
+                    overflow: 'hidden',
                   }}
                 >
                   {post.CoverImage && (
                     <div
                       style={{
                         position: 'relative',
-                        width:    '100%',
+                        width: '100%',
                         aspectRatio: '16 / 9',
+                        backgroundColor: '#ffffff',
                       }}
                     >
                       <Image
                         src={post.CoverImage}
                         alt={post.Title}
                         fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        style={{ objectFit: 'cover' }}
+                        sizes="(max-width: 896px) 100vw, 896px"
+                        style={{ objectFit: 'contain' }}
                         priority
-                        
                       />
                     </div>
                   )}
@@ -117,38 +129,52 @@ export default async function BlogPage() {
                   <div style={{ padding: '24px' }}>
                     <p
                       style={{
-                        fontSize:     '12px',
-                        fontWeight:   '600',
-                        color:        'var(--text-2)',
+                        fontSize: '12px',
+                        fontWeight: '600',
+                        color: 'var(--text-2)',
                         marginBottom: '8px',
                       }}
                     >
-                      {formattedDate}{post.ReadTime ? ' · ' + post.ReadTime : ''} · Affan
+                      {formattedDate}
+                      {post.ReadTime ? ' · ' + post.ReadTime : ''} · Affan
                     </p>
                     <h2
                       style={{
-                        fontSize:      '18px',
-                        fontWeight:    '700',
-                        color:         'var(--text-1)',
-                        marginBottom:  '8px',
+                        fontSize: '18px',
+                        fontWeight: '700',
+                        color: 'var(--text-1)',
+                        marginBottom: '8px',
                         letterSpacing: '-0.01em',
                       }}
                     >
                       {post.Title}
                     </h2>
-                    <p style={{ fontSize: '14px', color: 'var(--text-2)', lineHeight: '1.7' }}>
+                    <p
+                      style={{
+                        fontSize: '14px',
+                        color: 'var(--text-2)',
+                        lineHeight: '1.7',
+                      }}
+                    >
                       {post.Summary}
                     </p>
-                    <p style={{ fontSize: '13px', color: 'var(--accent)', marginTop: '14px', fontWeight: '500' }}>
+                    <p
+                      style={{
+                        fontSize: '13px',
+                        color: 'var(--accent)',
+                        marginTop: '14px',
+                        fontWeight: '500',
+                      }}
+                    >
                       Read more →
                     </p>
                   </div>
                 </article>
               </Link>
-            )
+            );
           })}
         </div>
       )}
     </div>
-  )
+  );
 }
